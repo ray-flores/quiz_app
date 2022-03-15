@@ -9,6 +9,7 @@ export type Question = {
   type: string;
 }
 
+// combines wrong answers with right answer in an array
 export type QuestionState = Question & { answers: string[] };
 
 // use enum to ensure only these valid values are used
@@ -24,6 +25,11 @@ export const fetchQuizQuestions = async (amount: number, difficulty: Difficulty)
 
   // use two awaits: 1st for the fetch itself then wait to convert it to JSON
   const data = await (await fetch(endpoint)).json();
-  console.log(data);
+  return data.results.map((question: Question) => (
+    {
+      ...question,
+      answer: 
+    }
+  ))
 } 
 

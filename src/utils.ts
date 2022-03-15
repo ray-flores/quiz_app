@@ -1,2 +1,6 @@
-export {}
+
 // function to randomize answers to questions 
+
+export const shuffleArray = (array: any[]) => {
+  [...array].sort(() => Math.random() - 0.5);
+}
