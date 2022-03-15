@@ -28,11 +28,24 @@ const App = () => {
   // call api function 
   console.log(fetchQuizQuestions(TOTAL_QUESTIONS, Difficulty.EASY))
 
-
   // make API call
   const startQuiz = async () => {
+    setLoading(true);
+    setGaveOver(false);
 
-  }
+    const newQuestions = await fetchQuizQuestions(
+      TOTAL_QUESTIONS,
+      Difficulty.EASY
+    );
+
+    setQuestions(newQuestions);
+    setScore(0);
+    setUserAnswers([]);
+    setNumber(0);
+    setLoading(false);
+
+
+  };
 
   //triggered when user selects ans
   const checkAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {
