@@ -1,4 +1,16 @@
 
+
+export type Question = {
+  category: string;
+  correct_answer: string;
+  difficulty: string;
+  incorrect_answer: string[];
+  question: string;
+  type: string;
+}
+
+export type QuestionState = Question & { answers: string[] };
+
 // use enum to ensure only these valid values are used
 export enum Difficulty {
   EASY = 'easy',
