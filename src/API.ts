@@ -1,5 +1,5 @@
 
-
+// use enum to ensure only these valid values are used
 export enum Difficulty {
   EASY = 'easy',
   MEDIUM = 'medium',
@@ -8,5 +8,10 @@ export enum Difficulty {
 
 // logic for fetching data from API
 export const fetchQuizQuestions = async (amount: number, difficulty: Difficulty) => {
-  
-}
+  const endpoint = `https://opentdb.com/api.php?amount=${amount}&difficulty=${difficulty}&type=multiple`;
+
+  // use two awaits: 1st for the fetch itself then wait to convert it to JSON
+  const data = await (await fetch(endpoint)).json();
+  console.log(data);
+} 
+

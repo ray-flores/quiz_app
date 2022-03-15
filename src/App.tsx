@@ -1,9 +1,11 @@
 
 
 import React, { useState } from 'react';
+import { fetchQuizQuestions } from './API';
 // Components
 import QuestionCard from './components/QuestionCard';
-
+// Types
+import { Difficulty } from './API';
 
 const TOTAL_QUESTIONS = 10;
 
@@ -15,6 +17,9 @@ const App = () => {
   const [userAnswers, setUserAnswers] = useState([]);
   const [score, setScore] = useState(0);
   const [gameOver, setGaveOver] = useState(true);
+
+  // call api function 
+  console.log(fetchQuizQuestions(TOTAL_QUESTIONS, Difficulty.EASY))
 
 
   // make API call
@@ -42,7 +47,7 @@ const App = () => {
       </button>
       <p className='score'>Score:</p>
       <p>Loading Questions... </p>
-      <QuestionCard 
+      {/* <QuestionCard 
         // add one because first item in array has index 0
         questionNumber={number + 1}
         totalQuestions={TOTAL_QUESTIONS}
@@ -50,7 +55,7 @@ const App = () => {
         answers={questions[number].answers}
         userAnswer={userAnswers ? userAnswers[number] : undefined}
         callback={checkAnswer}
-      />
+      /> */}
       <button className='next' onClick={nextQuestion}>
         Next Question
       </button>
