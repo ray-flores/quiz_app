@@ -26,7 +26,8 @@ const App = () => {
   const [gameOver, setGaveOver] = useState(true);
 
   // call api function 
-  console.log(fetchQuizQuestions(TOTAL_QUESTIONS, Difficulty.EASY))
+  //console.log(fetchQuizQuestions(TOTAL_QUESTIONS, Difficulty.EASY));
+  //console.log(questions);
 
   // make API call
   const startQuiz = async () => {
@@ -62,23 +63,35 @@ const App = () => {
   return (
     <div className="App">
       <h1>REACT QUIZ</h1>
-      <button className='start' onClick={startQuiz}>
-        Start
-      </button>
-      <p className='score'>Score:</p>
-      <p>Loading Questions... </p>
-      {/* <QuestionCard 
-        // add one because first item in array has index 0
-        questionNumber={number + 1}
-        totalQuestions={TOTAL_QUESTIONS}
-        question={questions[number].question}
-        answers={questions[number].answers}
-        userAnswer={userAnswers ? userAnswers[number] : undefined}
-        callback={checkAnswer}
-      /> */}
-      <button className='next' onClick={nextQuestion}>
-        Next Question
-      </button>
+
+      {/*} show start button only when game is over or user is on the last question */}
+      {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
+        <button className='start' onClick={startQuiz}>
+          Start
+        </button>
+      ) : null}
+
+      {!gameOver ? <p className='score'>Score:</p> : null}
+
+      {loading && <p>Loading Questions... </p>}
+
+      {/* add one because first item in array has index 0 */}
+      {!loading && !gameOver && (
+        <QuestionCard 
+          questionNumber={number + 1}
+          totalQuestions={TOTAL_QUESTIONS}
+          question={questions[number].question}
+          answers={questions[number].answers}
+          userAnswer={userAnswers ? userAnswers[number] : undefined}
+          callback={checkAnswer}
+        />
+      )}
+
+      {!loading && !gameOver && userAnswers.length === number + 1 && number !== TOTAL_QUESTIONS - 1 ? ( 
+        <button className='next' onClick={nextQuestion}>
+          Next Question
+        </button>
+      ) : null}
     </div>
   );
 }
