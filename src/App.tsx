@@ -23,7 +23,7 @@ const App = () => {
   const [number, setNumber] = useState(0);
   const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
   const [score, setScore] = useState(0);
-  const [gameOver, setGaveOver] = useState(true);
+  const [gameOver, setGameOver] = useState(true);
 
   // call api function 
   //console.log(fetchQuizQuestions(TOTAL_QUESTIONS, Difficulty.EASY));
@@ -32,7 +32,7 @@ const App = () => {
   // make API call
   const startQuiz = async () => {
     setLoading(true);
-    setGaveOver(false);
+    setGameOver(false);
 
     const newQuestions = await fetchQuizQuestions(
       TOTAL_QUESTIONS,
@@ -70,7 +70,14 @@ const App = () => {
 
   // triggers when user clicks for next question
   const nextQuestion = () => {
+    // Move on to the next question if not the last question
+    const nextQuestion = number + 1;
 
+    if (nextQuestion === TOTAL_QUESTIONS) {
+      setGameOver(true);
+    } else {
+      setNumber(nextQuestion);
+    }
 
   }
 
