@@ -7,7 +7,7 @@ import QuestionCard from './components/QuestionCard';
 // Types
 import { QuestionState, Difficulty } from './API';
 // Styles
-import { GlobalStyle } from './App.styles';
+import { GlobalStyle, Wrapper } from './App.styles';
 
 export type AnswerObject = {
   question: string;
@@ -87,7 +87,7 @@ const App = () => {
   return (
     <>
       <GlobalStyle />
-      <div className="App">
+      <Wrapper>
         <h1>REACT QUIZ</h1>
 
         {/*} show start button only when game is over or user is on the last question */}
@@ -118,7 +118,7 @@ const App = () => {
             Next Question
           </button>
         ) : null}
-      </div>
+      </Wrapper>
     </>
   );
 }
