@@ -3,7 +3,7 @@ import React from "react";
 // types
 import { AnswerObject } from "../App";
 // styles
-import { Wrapper, ButtonWrapper } from './QuestionCard.styles';
+//import { Wrapper, ButtonWrapper } from './QuestionCard.styles';
 
 type Props = {
   question: string;
